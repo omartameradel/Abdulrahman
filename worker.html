@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الحضور</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #e6f7ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    input, button {
+      margin: 10px;
+      padding: 12px;
+      font-size: 18px;
+      width: 260px;
+    }
+  </style>
+
+  <!-- Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <h2>تسجيل حضور العامل</h2>
+  <input type="text" id="workerName" placeholder="ادخل اسمك" />
+  <button onclick="submitAttendance()">تسجيل</button>
+
+  <script>
+    // إعدادات Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCDoBA3HZU8VqhtLGP8EG5XwaqSy1NBfv8",
+      authDomain: "user-web-8e480.firebaseapp.com",
+      projectId: "user-web-8e480",
+      storageBucket: "user-web-8e480.appspot.com",
+      messagingSenderId: "459053431380",
+      appId: "1:459053431380:web:c02536fde74f8f787a0bc1",
+      measurementId: "G-DP5F25X957"
+    };
+
+    // تهيئة Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // وظيفة تسجيل الحضور
+    function submitAttendance() {
+      const name = document.getElementById("workerName").value.trim();
+      if (!name) {
+        alert("من فضلك أدخل الاسم");
+        return;
+      }
+
+      db.collection("attendance").add({
+        name: name,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(() => {
+        alert("تم تسجيل حضورك بنجاح");
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        console.error("حدث خطأ أثناء التسجيل:", error);
+        alert("حدث خطأ أثناء التسجيل");
+      });
+    }
+  </script>
+</body>
+</html>
