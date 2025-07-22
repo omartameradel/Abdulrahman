@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>تسجيل دخول المهندس</title>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
-    <script src="firebase-config.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+  <script src="firebase-config.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h3>تسجيل دخول المهندس</h3>
@@ -19,7 +19,7 @@
       const u = document.getElementById("username").value;
       const p = document.getElementById("password").value;
       if (u === "123456" && p === "123456") {
-        location.href = 'dashboard.html';
+        location.href = 'ashboard.html'; // ✅ تصحيح اسم الملف
       } else {
         alert("بيانات غير صحيحة");
       }
